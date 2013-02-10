@@ -13,7 +13,7 @@ function J(p) {
       }
     }
 }
-setInterval(function () {
+var animate = function () {
     for (i = 1e3; i--;) {
         c = i % 42 * 1.35;
         H = T;
@@ -28,9 +28,13 @@ setInterval(function () {
     }
     for (i = 0; i < f * f; m[i++] = f) for (l = 4; l--;) U[i * 4 + l] = 255;
     for (c = C(W), s = S(W), j = F.length; j--;) {
-        k = F[j], x = k[0] * c + k[2] * s + 99, z = k[0] * s - k[2] * c, y = k[1] - z * .4 << 8;
+        var k = F[j];
+        var x = k[0] * c + k[2] * s + 99;
+        var z = k[0] * s - k[2] * c; 
+        var y = k[1] - z * .4 << 8;
         for (i = 3; i--;) if (z < m[p = y - ~x + [0, 1, f][i]]) for (m[p] = z, l = 3; l--;) U[p * 4 + l] = k[l + 3] * f
     }
     a.putImageData(O, 0, 0);
-    W += .03
-}, T = 0)
+    W += .03;
+};
+setInterval(animate, T = 0);
