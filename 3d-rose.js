@@ -1,7 +1,7 @@
 // http://www.romancortes.com/
 with(m = Math) C = cos, S = sin, P = pow;
-O = a.getImageData(0, 0, c.height = f = W = 256, f);
-U = O.data;
+O = a.getImageData(0, 0, c.height = f = W = 256, f); 
+U = O.data; // Array of zeroes 256 (height) * 256 (width) * 4 (RGBA) = 262144 (or 2^18)
 D = {};
 F = [];
 
@@ -21,10 +21,14 @@ var animate = function () {
         A = H * 2 - 1;
         B = T * 2 - 1;
         J([S(H * 7) * (o = 13 + 5 / (.2 + P(T * 4, 4))) - T * 50, T * 550 + 500, (l = C(H * 7)) * o, (G = l / 7 + .5) - T / 4, G]);
-        if (A * A + B * B < 1) if (c > 32) {
-            J([(o = .5 / (H + .01) - H * 300) * C(n = (j = c & 1) ? 6 : 4) + (w = T * -f) * S(n) + j * 630 - 390, o * S(n) - w * C(n) + 999 - j * 350, C(B + A) * 99 - j * 50, (P(l = 1 - B * B, f * 6) + C(H + T) + P(C((o * H + o + (B > 0 ? w : -w)) / 25), 30) * l - H + 2) / 5, o / 1e3 + .7 - o * w / 3e5]);
-            J([(o = H * 45 - 20) * C(l = c / .86) + (w = T * T) * f * S(l), C(B / 2) * 99 - w * T * 60 + 436, o * S(l) - w * f * C(l), w * .3 + .3, T * .7])
-        } else J([(o = A * (2 - T) * (80 - c * 2)) * C(c) - (w = 99 - C(A) * 120 - C(T) * (f - c * 5) + C(P(1 - T, 7)) * 50 + c * 2) * S(c), (B * 2 - C(P(T, 7)) + 9) * 50, o * S(c) + w * C(c), 1 - T * .7, P(1 - T, 9) / 4])
+        if (A * A + B * B < 1) {
+          if (c > 32) {
+              J([(o = .5 / (H + .01) - H * 300) * C(n = (j = c & 1) ? 6 : 4) + (w = T * -f) * S(n) + j * 630 - 390, o * S(n) - w * C(n) + 999 - j * 350, C(B + A) * 99 - j * 50, (P(l = 1 - B * B, f * 6) + C(H + T) + P(C((o * H + o + (B > 0 ? w : -w)) / 25), 30) * l - H + 2) / 5, o / 1e3 + .7 - o * w / 3e5]);
+              J([(o = H * 45 - 20) * C(l = c / .86) + (w = T * T) * f * S(l), C(B / 2) * 99 - w * T * 60 + 436, o * S(l) - w * f * C(l), w * .3 + .3, T * .7]);
+          } else { 
+            J([(o = A * (2 - T) * (80 - c * 2)) * C(c) - (w = 99 - C(A) * 120 - C(T) * (f - c * 5) + C(P(1 - T, 7)) * 50 + c * 2) * S(c), (B * 2 - C(P(T, 7)) + 9) * 50, o * S(c) + w * C(c), 1 - T * .7, P(1 - T, 9) / 4]);
+          }
+        }
     }
     for (i = 0; i < f * f; m[i++] = f) {
       for (l = 4; l--;) {
