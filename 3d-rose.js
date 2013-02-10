@@ -32,7 +32,13 @@ var animate = function () {
         var x = k[0] * c + k[2] * s + 99;
         var z = k[0] * s - k[2] * c; 
         var y = k[1] - z * .4 << 8;
-        for (i = 3; i--;) if (z < m[p = y - ~x + [0, 1, f][i]]) for (m[p] = z, l = 3; l--;) U[p * 4 + l] = k[l + 3] * f
+        for (i = 3; i--;) {
+          if (z < m[p = y - ~x + [0, 1, f][i]]) {
+            for (m[p] = z, l = 3; l--;) {
+              U[p * 4 + l] = k[l + 3] * f;
+            }
+          }
+        }
     }
     a.putImageData(O, 0, 0);
     W += .03;
