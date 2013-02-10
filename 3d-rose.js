@@ -6,7 +6,7 @@ pow = Math.pow;
 
 c.height = f = W = 256;
 imageData = a.getImageData(0, 0, 256, 256); 
-U = imageData.data; // Array of zeroes 256 (height) * 256 (width) * 4 (RGBA) = 262144 (or 2^18)
+pixelData = imageData.data; // Array of zeroes 256 (height) * 256 (width) * 4 (RGBA) = 262144 (or 2^18)
 D = {};
 F = [];
 
@@ -26,39 +26,58 @@ var animate = function () {
         T = m.random();
         A = H * 2 - 1;
         B = T * 2 - 1;
+
+        o = 13 + 5 / (.2 + pow(T * 4, 4));
+        l = cos(H * 7);
+        G = l / 7 + .5;
         J([
-            sin(H * 7) * (o = 13 + 5 / (.2 + pow(T * 4, 4))) - T * 50,
-            T * 550 + 500, 
-            (l = cos(H * 7)) * o,
-            (G = l / 7 + .5) - T / 4, 
+            sin(H * 7) * o - T * 50,
+            T * 550 + 500,
+            l * o,
+            G - T / 4, 
             G
           ]);
         if (A * A + B * B < 1) {
           if (c > 32) {
+              o = .5 / (H + .01) - H * 300;
+              j = c & 1;
+              n = j ? 6 : 4;
+              w = T * -f;
+              l = 1 - B * B;
               J([
-                  (o = .5 / (H + .01) - H * 300) * cos(n = (j = c & 1) ? 6 : 4) + (w = T * -f) * sin(n) + j * 630 - 390, o * sin(n) - w * cos(n) + 999 - j * 350,
+                  o * cos(n) + w * sin(n) + j * 630 - 390,
+                  o * sin(n) - w * cos(n) + 999 - j * 350,
                   cos(B + A) * 99 - j * 50,
-                  (pow(l = 1 - B * B, f * 6) + cos(H + T) + pow(cos((o * H + o + (B > 0 ? w : -w)) / 25), 30) * l - H + 2) / 5, o / 1e3 + .7 - o * w / 3e5
+                  (pow(l, f * 6) + cos(H + T) + pow(cos((o * H + o + (B > 0 ? w : -w)) / 25), 30) * l - H + 2) / 5,
+                  o / 1e3 + .7 - o * w / 3e5
                 ]);
+
+              o = H * 45 - 20;
+              l = c / .86;
+              w = T * T;
               J([
-                  (o = H * 45 - 20) * cos(l = c / .86) + (w = T * T) * f * sin(l),
+                  o * cos(l) + w * f * sin(l),
                   cos(B / 2) * 99 - w * T * 60 + 436,
-                  o * sin(l) - w * f * cos(l), w * .3 + .3, T * .7
+                  o * sin(l) - w * f * cos(l),
+                  w * .3 + .3, T * .7
                 ]);
           } else { 
+            o = A * (2 - T) * (80 - c * 2);
+            w = 99 - cos(A) * 120 - cos(T) * (f - c * 5) + cos(pow(1 - T, 7)) * 50 + c * 2;
             J([
-                (o = A * (2 - T) * (80 - c * 2)) * cos(c) - (w = 99 - cos(A) * 120 - cos(T) * (f - c * 5) + cos(pow(1 - T, 7)) * 50 + c * 2) * sin(c),
-                (B * 2 - cos(pow(T, 7)) + 9) * 50, o * sin(c) + w * cos(c),
+                o * cos(c) - w * sin(c),
+                (B * 2 - cos(pow(T, 7)) + 9) * 50,
+                o * sin(c) + w * cos(c),
                 1 - T * .7,
                 pow(1 - T, 9) / 4
               ]);
           }
         }
     }
-    // Required to draw ...
+    // Required to draw ... clear to white
     for (i = 0; i < f * f; m[i++] = f) {
       for (l = 4; l--;) {
-        U[i * 4 + l] = 255;
+        pixelData[i * 4 + l] = 255;
       }
     }
     for (c = cos(W), s = sin(W), j = F.length; j--;) {
@@ -69,7 +88,7 @@ var animate = function () {
         for (i = 3; i--;) {
           if (z < m[p = y - ~x + [0, 1, f][i]]) {
             for (m[p] = z, l = 3; l--;) {
-              U[p * 4 + l] = k[l + 3] * f;
+              pixelData[p * 4 + l] = k[l + 3] * f;
             }
           }
         }
