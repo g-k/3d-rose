@@ -2,14 +2,16 @@
 with(m = Math) C = cos, S = sin, P = pow;
 O = a.getImageData(0, 0, c.height = f = W = 256, f);
 U = O.data;
-D = {
-  };
+D = {};
 F = [];
 
 function J(p) {
-  
     p[5] = Q = 0;
-    for (j = 3; j--;) if (!D[Q = (p[j] >>= 2) + Q * f]) D[Q] = F.push(p)
+    for (j = 3; j--;) {
+      if (!D[Q = (p[j] >>= 2) + Q * f]) {
+        D[Q] = F.push(p);
+      }
+    }
 }
 setInterval(function () {
     for (i = 1e3; i--;) {
