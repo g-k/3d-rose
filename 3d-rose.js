@@ -26,7 +26,11 @@ var animate = function () {
             J([(o = H * 45 - 20) * C(l = c / .86) + (w = T * T) * f * S(l), C(B / 2) * 99 - w * T * 60 + 436, o * S(l) - w * f * C(l), w * .3 + .3, T * .7])
         } else J([(o = A * (2 - T) * (80 - c * 2)) * C(c) - (w = 99 - C(A) * 120 - C(T) * (f - c * 5) + C(P(1 - T, 7)) * 50 + c * 2) * S(c), (B * 2 - C(P(T, 7)) + 9) * 50, o * S(c) + w * C(c), 1 - T * .7, P(1 - T, 9) / 4])
     }
-    for (i = 0; i < f * f; m[i++] = f) for (l = 4; l--;) U[i * 4 + l] = 255;
+    for (i = 0; i < f * f; m[i++] = f) {
+      for (l = 4; l--;) {
+        U[i * 4 + l] = 255;
+      }
+    }
     for (c = C(W), s = S(W), j = F.length; j--;) {
         var k = F[j];
         var x = k[0] * c + k[2] * s + 99;
