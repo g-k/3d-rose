@@ -30,6 +30,7 @@ var animate = function () {
         o = 13 + 5 / (.2 + pow(T * 4, 4));
         l = cos(H * 7);
         G = l / 7 + .5;
+        // Draw the stem without leaves
         J([
             sin(H * 7) * o - T * 50,
             T * 550 + 500,
@@ -39,6 +40,7 @@ var animate = function () {
           ]);
         if (A * A + B * B < 1) {
           if (c > 32) {
+              // Draw leaves
               o = .5 / (H + .01) - H * 300;
               j = c & 1;
               n = j ? 6 : 4;
@@ -52,6 +54,7 @@ var animate = function () {
                   o / 1e3 + .7 - o * w / 3e5
                 ]);
 
+              // Sepals - skinny four or five leaves under the flower
               o = H * 45 - 20;
               l = c / .86;
               w = T * T;
@@ -62,6 +65,7 @@ var animate = function () {
                   w * .3 + .3, T * .7
                 ]);
           } else { 
+            // Flower petals
             o = A * (2 - T) * (80 - c * 2);
             w = 99 - cos(A) * 120 - cos(T) * (f - c * 5) + cos(pow(1 - T, 7)) * 50 + c * 2;
             J([
@@ -94,6 +98,7 @@ var animate = function () {
         }
     }
     a.putImageData(imageData, 0, 0);
+    // left-handed rotation around stem
     W += .03;
 };
 setInterval(animate, T = 0);
