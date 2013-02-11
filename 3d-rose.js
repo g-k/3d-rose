@@ -1,4 +1,6 @@
 // http://www.romancortes.com/
+// Description
+// http://www.romancortes.com/blog/1k-rose/
 m = Math;
 cos = Math.cos;
 sin = Math.sin;
@@ -8,7 +10,7 @@ c.height = f = W = 256;
 imageData = a.getImageData(0, 0, 256, 256); 
 pixelData = imageData.data; // Array of zeroes 256 (height) * 256 (width) * 4 (RGBA) = 262144 (or 2^18)
 D = {};
-F = [];
+F = []; // Z buffer?
 
 function J(p) {
     p[5] = Q = 0;
@@ -22,7 +24,7 @@ function J(p) {
 var animate = function () {
     for (i = 1e3; i--;) {
         c = i % 42 * 1.35;
-        H = T;
+        H = T; // initially zero from setInterval random on subsequence calls
         T = m.random();
         A = H * 2 - 1;
         B = T * 2 - 1;
@@ -79,6 +81,7 @@ var animate = function () {
         }
     }
     // Required to draw ... clear to white
+    // stores data on Math object
     for (i = 0; i < f * f; m[i++] = f) {
       for (l = 4; l--;) {
         pixelData[i * 4 + l] = 255;
