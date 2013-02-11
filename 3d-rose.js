@@ -29,16 +29,22 @@ var animate = function () {
         A = H * 2 - 1;
         B = T * 2 - 1;
 
-        o = 13 + 5 / (.2 + pow(T * 4, 4));
+        o = 13 // stem thickness (diameter or radius)
+            + 5 / (.2 + pow(T * 4, 4)); // expand at the top
         l = cos(H * 7);
-        G = l / 7 + .5;
+        G = l / 7 + .5; // color variation
         // Draw the stem without leaves
         J([
-            sin(H * 7) * o - T * 50,
-            T * 550 + 500,
-            l * o,
-            G - T / 4, 
-            G
+            sin(H * 7) * o
+              - T * // join stem top to flow
+              50 // distance from center Y rotation
+              ,
+            T * 550  // stem length
+              + 500, // shift down on screen
+            l * o,     // roughly distance from center Y axis for rotation
+            G          // red
+              - T / 4, // bottom of stem color
+            G          // green
           ]);
         if (A * A + B * B < 1) {
           if (c > 32) {
