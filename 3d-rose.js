@@ -1,13 +1,10 @@
-// http://www.romancortes.com/
-// Description
-// http://www.romancortes.com/blog/1k-rose/
 m = Math;
 cos = Math.cos;
 sin = Math.sin;
 pow = Math.pow;
 
 c.height = f = W = 256;
-imageData = a.getImageData(0, 0, 256, 256); 
+imageData = a.getImageData(0, 0, 256, 256);
 pixelData = imageData.data; // Array of zeroes 256 (height) * 256 (width) * 4 (RGBA) = 262144 (or 2^18)
 D = {};
 F = []; // Z buffer?
@@ -46,7 +43,10 @@ var animate = function () {
               - T / 4, // bottom of stem color
             G          // green
           ]);
+
+        // leaf shape - larger gives larger, squarer leaves
         if (A * A + B * B < 1) {
+          // number of petals
           if (c > 32) {
               // Draw leaves
               o = .5 / (H + .01) - H * 300;
@@ -72,7 +72,7 @@ var animate = function () {
                   o * sin(l) - w * f * cos(l),
                   w * .3 + .3, T * .7
                 ]);
-          } else { 
+          } else {
             // Flower petals
             o = A * (2 - T) * (80 - c * 2);
             w = 99 - cos(A) * 120 - cos(T) * (f - c * 5) + cos(pow(1 - T, 7)) * 50 + c * 2;
@@ -80,7 +80,8 @@ var animate = function () {
                 o * cos(c) - w * sin(c),
                 (B * 2 - cos(pow(T, 7)) + 9) * 50,
                 o * sin(c) + w * cos(c),
-                1 - T * .7,
+                1 // redness
+                  - T * .7, // variation
                 pow(1 - T, 9) / 4
               ]);
           }
@@ -96,7 +97,7 @@ var animate = function () {
     for (c = cos(W), s = sin(W), j = F.length; j--;) {
         var k = F[j];
         var x = k[0] * c + k[2] * s + 99;
-        var z = k[0] * s - k[2] * c; 
+        var z = k[0] * s - k[2] * c;
         var y = k[1] - z * .4 << 8;
         for (i = 3; i--;) {
           if (z < m[p = y - ~x + [0, 1, f][i]]) {
